@@ -283,8 +283,6 @@ D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\bin\Debug\netcor
 D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.csprojAssemblyReference.cache
-D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.csproj.CoreCompileInputs.cache
-D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.MvcApplicationPartsAssemblyInfo.cache
 D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.AssemblyInfoInputs.cache
 D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.AssemblyInfo.cs
 D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.RazorTargetAssemblyInfo.cache
@@ -294,3 +292,5 @@ D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcor
 D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.dll
 D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.pdb
 D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.genruntimeconfig.cache
+D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.csproj.CoreCompileInputs.cache
+D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.MvcApplicationPartsAssemblyInfo.cache
