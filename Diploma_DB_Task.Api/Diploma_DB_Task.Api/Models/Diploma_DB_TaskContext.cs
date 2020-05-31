@@ -25,6 +25,7 @@ namespace Diploma_DB_Task.Api.Models
         public virtual DbSet<Orderline3778> Orderline3778 { get; set; }
         public virtual DbSet<Product3778> Product3778 { get; set; }
         public virtual DbSet<Purchaseorder3778> Purchaseorder3778 { get; set; }
+        public virtual DbSet<ClientAuthPerson> ClienAuthPerson { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -38,6 +39,44 @@ namespace Diploma_DB_Task.Api.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ClientAuthPerson>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.Property(e => e.Accountid).HasColumnName("ACCOUNTID");
+
+                entity.Property(e => e.Acctname)
+                    .IsRequired()
+                    .HasColumnName("ACCTNAME")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Balance)
+                    .HasColumnName("BALANCE")
+                    .HasColumnType("money");
+
+                entity.Property(e => e.Creditlimit)
+                    .HasColumnName("CREDITLIMIT")
+                    .HasColumnType("money");
+
+                entity.Property(e => e.Userid).HasColumnName("USERID");
+
+                entity.Property(e => e.Firstname)
+                    .IsRequired()
+                    .HasColumnName("FIRSTNAME")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Surname)
+                    .IsRequired()
+                    .HasColumnName("SURNAME")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasColumnName("EMAIL")
+                    .HasMaxLength(100);
+
+            });
+
             modelBuilder.Entity<Accountpayment3778>(entity =>
             {
                 entity.HasKey(e => new { e.Accountid, e.Datetimereceived })

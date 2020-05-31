@@ -30,11 +30,11 @@ namespace Diploma_DB_Task.Api.Controllers
 
         // GET: api/ClientAccount/id
         [HttpGet("id")]
-        public async Task<ActionResult<IEnumerable<Clientaccount3778>>> GetClientAccountById(int id)
+        public async Task<ActionResult<IEnumerable<ClientAuthPerson>>> GetClientAccountById(int id)
         {
             var param = new SqlParameter("@PACCOUNTID", id);
 
-            return await _context.Clientaccount3778.FromSqlRaw("EXEC GET_CLIENT_ACCOUNT_BY_ID @PACCOUNTID", param).ToListAsync();
+            return await _context.ClienAuthPerson.FromSqlRaw("EXEC GET_CLIENT_ACCOUNT_BY_ID @PACCOUNTID", param).ToListAsync();
         }
 
         // POST: api/ClientAccount
