@@ -12,38 +12,38 @@ namespace Diploma_DB_Task.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class AccountController : ControllerBase
     {
         private readonly Diploma_DB_TaskContext _context;
 
-        public ProductController(Diploma_DB_TaskContext context)
+        public AccountController(Diploma_DB_TaskContext context)
         {
             _context = context;
         }
 
-        // GET: api/Product
+        // GET: api/Clientaccount
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product3778>>> GetAllProducts()
+        public async Task<ActionResult<IEnumerable<Clientaccount3778>>> GetAllClientAccounts()
         {
-            return await _context.Product3778.ToListAsync();
+            return await _context.Clientaccount3778.ToListAsync();
         }
 
-        // GET: api/Product/id
+        // GET: api/ClientAccount/id
         [HttpGet("id")]
-        public async Task<ActionResult<IEnumerable<Product3778>>> GetProductById(int id)
+        public async Task<ActionResult<IEnumerable<Clientaccount3778>>> GetClientAccountById(int id)
         {
-            var param = new SqlParameter("@PPRODID", id);
+            var param = new SqlParameter("@PACCOUNTID", id);
 
-            return await _context.Product3778.FromSqlRaw("EXEC GET_PRODUCT_BY_ID @PPRODID", param).ToListAsync();
+            return await _context.Clientaccount3778.FromSqlRaw("EXEC GET_CLIENT_ACCOUNT_BY_ID @PACCOUNTID", param).ToListAsync();
         }
 
-        // POST: api/Product
+        // POST: api/ClientAccount
         [HttpPost]
-        public async Task<int> AddProduct(Product3778 product)
+        public async Task<int> AddClientAccount(Clientaccount3778 account)
         {
-            var p1 = new SqlParameter("@PPRODNAME", product.Prodname);
-            var p2 = new SqlParameter("@PBUYPRICE", product.Buyprice);
-            var p3 = new SqlParameter("@PSELLPRICE", product.Sellprice);
+            var p1 = new SqlParameter("@PACCTNAME", account.Acctname);
+            var p2 = new SqlParameter("@PBALANCE", account.Balance);
+            var p3 = new SqlParameter("@PCREDITLIMIT", account.Creditlimit);
             var out1 = new SqlParameter
             {
                 ParameterName = "@ReturnVal",
@@ -58,6 +58,5 @@ namespace Diploma_DB_Task.Api.Controllers
             return Convert.ToInt32(out1.Value);
 
         }
-
     }
 }

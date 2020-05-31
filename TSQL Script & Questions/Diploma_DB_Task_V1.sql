@@ -353,6 +353,7 @@ BEGIN
             INSERT INTO PRODUCT3778 (PRODNAME, BUYPRICE, SELLPRICE)
             VALUES (@PPRODNAME, @PBUYPRICE, @PSELLPRICE);
 
+            DECLARE @ProdID INT = @@IDENTITY;
             DECLARE @MyCursor CURSOR;
             DECLARE @LocID NVARCHAR(10);
             SET @MyCursor = CURSOR FOR SELECT LOCATIONID FROM LOCATION3778;
@@ -363,7 +364,7 @@ BEGIN
             WHILE @@FETCH_STATUS = 0
                 BEGIN
                     INSERT INTO INVENTORY3778 (PRODUCTID, LOCATIONID, NUMINSTOCK)
-                    VALUES (@@IDENTITY, @LocID, 0);
+                    VALUES (@ProdID, @LocID, 0);
                     FETCH NEXT FROM @MyCursor INTO @LocID;
                 END
 
@@ -371,7 +372,7 @@ BEGIN
             DEALLOCATE @MyCursor;
 
             COMMIT TRAN
-            RETURN @@IDENTITY;
+            RETURN @ProdID;
             
         END TRY
         BEGIN CATCH
