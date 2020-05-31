@@ -25,13 +25,13 @@ namespace Diploma_DB_Task.Api.Controllers
 
         // GET: api/Location 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Location3778>>> GetLocation3778()
+        public async Task<ActionResult<IEnumerable<Location3778>>> GetAllLocations()
         {
             return await _context.Location3778.ToListAsync();
         }
 
-        // GET: api/Location/id  ---> id is the parameter value
-        [HttpGet("{id}")]
+        // GET: api/Location/id
+        [HttpGet("id")]
         public async Task<ActionResult<IEnumerable<Location3778>>> GetLocationById(string id)
         {
             var param = new SqlParameter("@PLOCID", id);
@@ -43,111 +43,23 @@ namespace Diploma_DB_Task.Api.Controllers
         [HttpPost]
         public string AddLocation(Location3778 location)
         {
+            var p1 = new SqlParameter("@PLOCID", location.Locationid);
+            var p2 = new SqlParameter("@PLOCNAME", location.Locname);
+            var p3 = new SqlParameter("@PLOCADDRESS", location.Address);
+            var p4 = new SqlParameter("@PMANAGER", location.Manager);
             var out1 = new SqlParameter
             {
                 ParameterName = "@LOCID",
                 DbType = System.Data.DbType.String,
-                Size = Int32.MaxValue,
+                Size = 8,
                 Direction = System.Data.ParameterDirection.Output
             };
 
-            var sql = $"EXEC ADD_LOCATION '{location.Locationid}', '{location.Locname}', '{location.Address}', '{location.Manager}', @LOCID OUT";
-            _context.Database.ExecuteSqlRaw(sql, out1);
+            var sql = "EXEC ADD_LOCATION @PLOCID, @PLOCNAME, @PLOCADDRESS, @PMANAGER, @LOCID OUT";
+
+            _context.Database.ExecuteSqlRaw(sql, p1, p2, p3, p4, out1);
 
             return out1.Value.ToString();
-        }
-
-        //GET: api/Location/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Location3778>> GetLocation3778(string id)
-        //{
-        //    var location3778 = await _context.Location3778.FindAsync(id);
-
-        //    if (location3778 == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return location3778;
-        //}
-
-        // PUT: api/Location/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutLocation3778(string id, Location3778 location3778)
-        //{
-        //    if (id != location3778.Locationid)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(location3778).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!Location3778Exists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
-
-        ////// POST: api/Location
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for
-        //// more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        //[HttpPost]
-        //public async Task<ActionResult<Location3778>> PostLocation3778(Location3778 location3778)
-        //{
-        //    _context.Location3778.Add(location3778);
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateException)
-        //    {
-        //        if (Location3778Exists(location3778.Locationid))
-        //        {
-        //            return Conflict();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return CreatedAtAction("GetLocation3778", new { id = location3778.Locationid }, location3778);
-        //}
-
-        ////// DELETE: api/Location/5
-        //[HttpDelete("{id}")]
-        //public async Task<ActionResult<Location3778>> DeleteLocation3778(string id)
-        //{
-        //    var location3778 = await _context.Location3778.FindAsync(id);
-        //    if (location3778 == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.Location3778.Remove(location3778);
-        //    await _context.SaveChangesAsync();
-
-        //    return location3778;
-        //}
-
-        private bool Location3778Exists(string id)
-        {
-            return _context.Location3778.Any(e => e.Locationid == id);
         }
     }
 }
