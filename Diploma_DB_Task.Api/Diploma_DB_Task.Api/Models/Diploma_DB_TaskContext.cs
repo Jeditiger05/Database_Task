@@ -26,6 +26,7 @@ namespace Diploma_DB_Task.Api.Models
         public virtual DbSet<Product3778> Product3778 { get; set; }
         public virtual DbSet<Purchaseorder3778> Purchaseorder3778 { get; set; }
         public virtual DbSet<ClientAuthPerson> ClienAuthPerson { get; set; }
+        public virtual DbSet<OrderDetails> OrderDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -39,6 +40,46 @@ namespace Diploma_DB_Task.Api.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<OrderDetails>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.Property(e => e.Orderid).HasColumnName("ORDERID");
+
+                entity.Property(e => e.Shippingaddress)
+                    .IsRequired()
+                    .HasColumnName("SHIPPINGADDRESS")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Datetimecreated)
+                    .HasColumnName("DATETIMECREATED")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Datetimedispatched)
+                    .HasColumnName("DATETIMEDISPATCHED")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Total)
+                    .HasColumnName("TOTAL")
+                    .HasColumnType("money");
+
+                entity.Property(e => e.Userid).HasColumnName("USERID");
+
+                entity.Property(e => e.Productid).HasColumnName("PRODUCTID");
+
+                entity.Property(e => e.Quantity).HasColumnName("QUANTITY");
+
+                entity.Property(e => e.Discount)
+                    .HasColumnName("DISCOUNT")
+                    .HasColumnType("decimal(3, 2)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Subtotal)
+                    .HasColumnName("SUBTOTAL")
+                    .HasColumnType("money");
+
+            });
+
             modelBuilder.Entity<ClientAuthPerson>(entity =>
             {
                 entity.HasNoKey();

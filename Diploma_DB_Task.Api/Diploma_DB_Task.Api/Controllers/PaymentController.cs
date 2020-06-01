@@ -21,6 +21,7 @@ namespace Diploma_DB_Task.Api.Controllers
             _context = context;
         }
 
+        //POST: api/Payment
         [HttpPost]
         public async Task MakeAccountPayment(Accountpayment3778 payment)
         {
