@@ -43,10 +43,10 @@ namespace Diploma_DB_Task.Api.Controllers
         [HttpPost]
         public async Task<string> AddLocation(Location3778 location)
         {
-            var p1 = new SqlParameter("@PLOCID", location.Locationid);
-            var p2 = new SqlParameter("@PLOCNAME", location.Locname);
-            var p3 = new SqlParameter("@PLOCADDRESS", location.Address);
-            var p4 = new SqlParameter("@PMANAGER", location.Manager);
+            var param1 = new SqlParameter("@PLOCID", location.Locationid);
+            var param2 = new SqlParameter("@PLOCNAME", location.Locname);
+            var param3 = new SqlParameter("@PLOCADDRESS", location.Address);
+            var param4 = new SqlParameter("@PMANAGER", location.Manager);
             var out1 = new SqlParameter
             {
                 ParameterName = "@LOCID",
@@ -57,7 +57,7 @@ namespace Diploma_DB_Task.Api.Controllers
 
             var sql = "EXEC ADD_LOCATION @PLOCID, @PLOCNAME, @PLOCADDRESS, @PMANAGER, @LOCID OUT";
 
-            await _context.Database.ExecuteSqlRawAsync(sql, p1, p2, p3, p4, out1);
+            await _context.Database.ExecuteSqlRawAsync(sql, param1, param2, param3, param4, out1);
 
             return out1.Value.ToString();
         }

@@ -25,13 +25,13 @@ namespace Diploma_DB_Task.Api.Controllers
         [HttpPost]
         public async void PurchaseStock(Purchaseorder3778 purchase)
         {
-            var p1 = new SqlParameter("@PPRODID", purchase.Productid);
-            var p2 = new SqlParameter("@PLOCID", purchase.Locationid);
-            var p3 = new SqlParameter("@PQTY", purchase.Quantity);
+            var param1 = new SqlParameter("@PPRODID", purchase.Productid);
+            var param2 = new SqlParameter("@PLOCID", purchase.Locationid);
+            var param3 = new SqlParameter("@PQTY", purchase.Quantity);
 
             var sql = "EXEC PURCHASE_STOCK @PPRODID, @PLOCID, @PQTY";
 
-            await _context.Database.ExecuteSqlRawAsync(sql, p1, p2, p3);
+            await _context.Database.ExecuteSqlRawAsync(sql, param1, param2, param3);
         }
 
     }

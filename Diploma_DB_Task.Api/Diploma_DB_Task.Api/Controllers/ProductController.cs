@@ -41,9 +41,9 @@ namespace Diploma_DB_Task.Api.Controllers
         [HttpPost]
         public async Task<int> AddProduct(Product3778 product)
         {
-            var p1 = new SqlParameter("@PPRODNAME", product.Prodname);
-            var p2 = new SqlParameter("@PBUYPRICE", product.Buyprice);
-            var p3 = new SqlParameter("@PSELLPRICE", product.Sellprice);
+            var param1 = new SqlParameter("@PPRODNAME", product.Prodname);
+            var param2 = new SqlParameter("@PBUYPRICE", product.Buyprice);
+            var param3 = new SqlParameter("@PSELLPRICE", product.Sellprice);
             var out1 = new SqlParameter
             {
                 ParameterName = "@ReturnVal",
@@ -53,7 +53,7 @@ namespace Diploma_DB_Task.Api.Controllers
 
             var sql = "EXEC @ReturnVal = ADD_PRODUCT @PPRODNAME, @PBUYPRICE, @PSELLPRICE";
 
-            await _context.Database.ExecuteSqlRawAsync(sql, out1, p1, p2, p3);
+            await _context.Database.ExecuteSqlRawAsync(sql, out1, param1, param2, param3);
 
             return Convert.ToInt32(out1.Value);
 

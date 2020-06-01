@@ -41,9 +41,9 @@ namespace Diploma_DB_Task.Api.Controllers
         [HttpPost]
         public async Task<int> AddClientAccount(Clientaccount3778 account)
         {
-            var p1 = new SqlParameter("@PACCTNAME", account.Acctname);
-            var p2 = new SqlParameter("@PBALANCE", account.Balance);
-            var p3 = new SqlParameter("@PCREDITLIMIT", account.Creditlimit);
+            var param1 = new SqlParameter("@PACCTNAME", account.Acctname);
+            var param2 = new SqlParameter("@PBALANCE", account.Balance);
+            var param3 = new SqlParameter("@PCREDITLIMIT", account.Creditlimit);
             var out1 = new SqlParameter
             {
                 ParameterName = "@ReturnVal",
@@ -51,9 +51,9 @@ namespace Diploma_DB_Task.Api.Controllers
                 Direction = System.Data.ParameterDirection.Output
             };
 
-            var sql = "EXEC @ReturnVal = ADD_PRODUCT @PPRODNAME, @PBUYPRICE, @PSELLPRICE";
+            var sql = "EXEC @ReturnVal = ADD_CLIENT_ACCOUNT @PACCTNAME, @PBALANCE, @PCREDITLIMIT";
 
-            await _context.Database.ExecuteSqlRawAsync(sql, out1, p1, p2, p3);
+            await _context.Database.ExecuteSqlRawAsync(sql, out1, param1, param2, param3);
 
             return Convert.ToInt32(out1.Value);
 

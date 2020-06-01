@@ -293,3 +293,4 @@ D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcor
 D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.dll
 D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.pdb
 D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.genruntimeconfig.cache
+D:\GitHub\Database_Task\Diploma_DB_Task.Api\Diploma_DB_Task.Api\obj\Debug\netcoreapp3.1\Diploma_DB_Task.Api.csprojAssemblyReference.cache
