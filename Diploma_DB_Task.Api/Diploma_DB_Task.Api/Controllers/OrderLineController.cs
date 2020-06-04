@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Diploma_DB_Task.Api.Models;
+using Microsoft.Data.SqlClient;
 
 namespace Diploma_DB_Task.Api.Controllers
 {
@@ -20,104 +21,34 @@ namespace Diploma_DB_Task.Api.Controllers
             _context = context;
         }
 
-        // GET: api/OrderLine
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Orderline3778>>> GetOrderline3778()
-        {
-            return await _context.Orderline3778.ToListAsync();
-        }
-
-        // GET: api/OrderLine/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Orderline3778>> GetOrderline3778(int id)
-        {
-            var orderline3778 = await _context.Orderline3778.FindAsync(id);
-
-            if (orderline3778 == null)
-            {
-                return NotFound();
-            }
-
-            return orderline3778;
-        }
-
-        // PUT: api/OrderLine/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrderline3778(int id, Orderline3778 orderline3778)
-        {
-            if (id != orderline3778.Orderid)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(orderline3778).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!Orderline3778Exists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         // POST: api/OrderLine
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Orderline3778>> PostOrderline3778(Orderline3778 orderline3778)
+        public async Task<IActionResult> AddProductToOrder(Orderline3778 orderline)
         {
-            _context.Orderline3778.Add(orderline3778);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (Orderline3778Exists(orderline3778.Orderid))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            var param1 = new SqlParameter("@PORDERID", orderline.Orderid);
+            var param2 = new SqlParameter("@PPRODIID", orderline.Productid);
+            var param3 = new SqlParameter("@PQTY", orderline.Quantity);
+            var param4 = new SqlParameter("@DISCOUNT", orderline.Discount);
 
-            return CreatedAtAction("GetOrderline3778", new { id = orderline3778.Orderid }, orderline3778);
+            var sql = "EXEC ADD_PRODUCT_TO_ORDER @PORDERID, @PPRODIID, @PQTY, @DISCOUNT";
+
+            await _context.Database.ExecuteSqlRawAsync(sql, param1, param2, param3, param4);
+
+            return Ok();
         }
 
-        // DELETE: api/OrderLine/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Orderline3778>> DeleteOrderline3778(int id)
+        // DELETE: api/OrderLine
+        [HttpDelete]
+        public async Task<IActionResult> RemoveProductFromOrder(Orderline3778 orderline)
         {
-            var orderline3778 = await _context.Orderline3778.FindAsync(id);
-            if (orderline3778 == null)
-            {
-                return NotFound();
-            }
+            var param1 = new SqlParameter("@PORDERID", orderline.Orderid);
+            var param2 = new SqlParameter("@PPRODIID", orderline.Productid);
 
-            _context.Orderline3778.Remove(orderline3778);
-            await _context.SaveChangesAsync();
+            var sql = "EXEC REMOVE_PRODUCT_FROM_ORDER @PORDERID, @PPRODIID";
 
-            return orderline3778;
-        }
+            await _context.Database.ExecuteSqlRawAsync(sql, param1, param2);
 
-        private bool Orderline3778Exists(int id)
-        {
-            return _context.Orderline3778.Any(e => e.Orderid == id);
+            return Accepted();
         }
     }
 }

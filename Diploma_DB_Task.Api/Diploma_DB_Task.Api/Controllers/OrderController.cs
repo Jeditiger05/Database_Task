@@ -59,7 +59,7 @@ namespace Diploma_DB_Task.Api.Controllers
             await _context.Database.ExecuteSqlRawAsync(sql, out1, param1, param2);
 
             return Convert.ToInt32(out1.Value);
-               
+
         }
 
         [HttpPut]
@@ -70,8 +70,9 @@ namespace Diploma_DB_Task.Api.Controllers
             var sql = "EXEC FULLFILL_ORDER @PORDERID";
 
             await _context.Database.ExecuteSqlRawAsync(sql, param);
+            //_context.SaveChanges(); Whats going on here?
 
-            return NoContent();
+            return Accepted();
         }
     }
 }

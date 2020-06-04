@@ -23,7 +23,7 @@ namespace Diploma_DB_Task.Api.Controllers
 
         // POST: api/Purchase
         [HttpPost]
-        public async void PurchaseStock(Purchaseorder3778 purchase)
+        public async Task<IActionResult> PurchaseStock(Purchaseorder3778 purchase)
         {
             var param1 = new SqlParameter("@PPRODID", purchase.Productid);
             var param2 = new SqlParameter("@PLOCID", purchase.Locationid);
@@ -32,6 +32,8 @@ namespace Diploma_DB_Task.Api.Controllers
             var sql = "EXEC PURCHASE_STOCK @PPRODID, @PLOCID, @PQTY";
 
             await _context.Database.ExecuteSqlRawAsync(sql, param1, param2, param3);
+
+            return Ok();
         }
 
     }

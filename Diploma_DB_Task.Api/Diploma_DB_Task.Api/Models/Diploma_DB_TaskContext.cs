@@ -43,40 +43,41 @@ namespace Diploma_DB_Task.Api.Models
             modelBuilder.Entity<OrderDetails>(entity =>
             {
                 entity.HasNoKey();
+                base.OnModelCreating(modelBuilder);
 
-                entity.Property(e => e.Orderid).HasColumnName("ORDERID");
+                //entity.Property(e => e.Orderid).HasColumnName("ORDERID");
 
-                entity.Property(e => e.Shippingaddress)
-                    .IsRequired()
-                    .HasColumnName("SHIPPINGADDRESS")
-                    .HasMaxLength(200);
+                //entity.Property(e => e.Shippingaddress)
+                //    .IsRequired()
+                //    .HasColumnName("SHIPPINGADDRESS")
+                //    .HasMaxLength(200);
 
-                entity.Property(e => e.Datetimecreated)
-                    .HasColumnName("DATETIMECREATED")
-                    .HasColumnType("datetime");
+                //entity.Property(e => e.Datetimecreated)
+                //    .HasColumnName("DATETIMECREATED")
+                //    .HasColumnType("datetime");
 
-                entity.Property(e => e.Datetimedispatched)
-                    .HasColumnName("DATETIMEDISPATCHED")
-                    .HasColumnType("datetime");
+                //entity.Property(e => e.Datetimedispatched)
+                //    .HasColumnName("DATETIMEDISPATCHED")
+                //    .HasColumnType("datetime");
 
-                entity.Property(e => e.Total)
-                    .HasColumnName("TOTAL")
-                    .HasColumnType("money");
+                //entity.Property(e => e.Total)
+                //    .HasColumnName("TOTAL")
+                //    .HasColumnType("money");
 
-                entity.Property(e => e.Userid).HasColumnName("USERID");
+                //entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Productid).HasColumnName("PRODUCTID");
+                //entity.Property(e => e.Productid).HasColumnName("PRODUCTID");
 
-                entity.Property(e => e.Quantity).HasColumnName("QUANTITY");
+                //entity.Property(e => e.Quantity).HasColumnName("QUANTITY");
 
-                entity.Property(e => e.Discount)
-                    .HasColumnName("DISCOUNT")
-                    .HasColumnType("decimal(3, 2)")
-                    .HasDefaultValueSql("((0))");
+                //entity.Property(e => e.Discount)
+                //    .HasColumnName("DISCOUNT")
+                //    .HasColumnType("decimal(3, 2)")
+                //    .HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.Subtotal)
-                    .HasColumnName("SUBTOTAL")
-                    .HasColumnType("money");
+                //entity.Property(e => e.Subtotal)
+                //    .HasColumnName("SUBTOTAL")
+                //    .HasColumnType("money");
 
             });
 
