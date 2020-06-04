@@ -70,7 +70,6 @@ namespace Diploma_DB_Task.Api.Controllers
             var sql = "EXEC FULLFILL_ORDER @PORDERID";
 
             await _context.Database.ExecuteSqlRawAsync(sql, param);
-            //_context.SaveChanges(); Whats going on here?
 
             return Accepted();
         }
